@@ -42,7 +42,7 @@ INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
 ('Adam', 'Stevenson', 'adam.stevenson@keyin.com', '2024-01-02'),
 ('Brandon', 'Shea', 'brandon.shea@keyin.com', '2024-01-02'),
 ('Kyle', 'Hollett', 'kyle.hollett@keyin.com', '2024-01-02'),
-('Brian', 'Janes', 'Brian.Janes@keyin.com', '2024-01-02');
+('Brian', 'Janes', 'brian.janes@keyin.com', '2024-01-02');
 
 -- Insert professors
 INSERT INTO professors (first_name, last_name, department) VALUES
@@ -65,3 +65,29 @@ INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES
 (3, 2, '2024-09-02'),
 (4, 3, '2024-09-02'),
 (5, 1, '2024-09-02');
+
+--Query to get all students enrolled in a specific course
+SELECT CONCAT(students.first_name, ' ', students.last_name) AS full_name
+FROM students
+JOIN enrollments ON students.id = enrollments.student_id
+JOIN courses ON enrollments.course_id = courses.id
+WHERE courses.course_name = 'Databases';
+
+--Query to get all courses and the professors who teach them
+SELECT courses.course_name, CONCAT(professors.first_name, ' ', professors.last_name) AS professor_name
+FROM courses
+JOIN professors ON courses.professor_id = professors.id;
+
+--Query to get all courses that have at least one student enrolled
+SELECT DISTINCT courses.course_name
+FROM courses
+JOIN enrollments ON courses.id = enrollments.course_id;
+
+--Update student email
+UPDATE students
+SET email = 'brad.ayers@keyin.com'
+WHERE id = 1;
+
+--Delete student enrollment
+DELETE FROM enrollments
+WHERE student_id = 1 AND course_id = 1;
