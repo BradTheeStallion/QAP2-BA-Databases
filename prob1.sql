@@ -34,3 +34,34 @@ CREATE TABLE enrollments (
     FOREIGN KEY (student_id) REFERENCES students(id),
     FOREIGN KEY (course_id) REFERENCES courses(id)
 );
+
+--Insert Data
+-- Insert students
+INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
+('Brad', 'Ayers', 'bradley.ayer@keyin.com', '2024-01-02'),
+('Adam', 'Stevenson', 'adam.stevenson@keyin.com', '2024-01-02'),
+('Brandon', 'Shea', 'brandon.shea@keyin.com', '2024-01-02'),
+('Kyle', 'Hollett', 'kyle.hollett@keyin.com', '2024-01-02'),
+('Brian', 'Janes', 'Brian.Janes@keyin.com', '2024-01-02');
+
+-- Insert professors
+INSERT INTO professors (first_name, last_name, department) VALUES
+('Matthew', 'English', 'Full Stack Development'),
+('Ainee', 'Q', 'Java'),
+('Suresh', 'P', 'AWS'),
+('Mo', 'B', 'Python'),
+('Noman', 'A', 'JS');
+
+-- Insert courses
+INSERT INTO courses (course_name, course_description, professor_id) VALUES
+('Databases', 'Introduction to Databases', 1),
+('Advanced Java', 'Fundamentals of Java', 2),
+('AWS', 'Introduction to AWS Development', 3);
+
+-- Insert enrollments
+INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES
+(1, 1, '2024-09-02'),
+(2, 1, '2024-09-02'),
+(3, 2, '2024-09-02'),
+(4, 3, '2024-09-02'),
+(5, 1, '2024-09-02');
