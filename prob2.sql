@@ -2,7 +2,7 @@
 --QAP2 Problem 2: Online Store Inventory and Orders System
 --October 8, 2024
 
---Create Tables
+--Create Tables:
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     product_name VARCHAR(100),
@@ -33,7 +33,7 @@ CREATE TABLE order_items (
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
 
---Insert Data
+--Insert Data:
 --Insert products
 INSERT INTO products (product_name, price, stock_quantity) VALUES
 ('Ghost Shrimp', 3.99, 100),
@@ -69,3 +69,36 @@ INSERT INTO order_items (order_id, product_id, quantity) VALUES
 (4, 5, 1),
 (5, 3, 1),
 (5, 4, 1);
+
+--Tasks:
+--Retrieve all products with their stock quantities
+SELECT product_name, stock_quantity
+FROM products;
+
+--Retrieve the product names and quantities for one of the orders
+SELECT products.product_name, order_items.quantity
+FROM order_items
+JOIN products ON order_items.product_id = products.id
+WHERE order_items.order_id = 1;
+
+--Retrieve all orders placed by a specific customer
+--(including the IDs of what was ordered and quantities)
+SELECT orders.id AS order_id, order_items.product_id, order_items.quantity
+FROM orders
+JOIN order_items ON orders.id = order_items.order_id
+WHERE orders.customer_id = 1;
+
+--Update Data
+--Simulate stock reduction for order_id = 1
+UPDATE products
+SET stock_quantity = stock_quantity - (
+    SELECT quantity
+    FROM order_items
+    WHERE order_items.product_id = products.id AND order_items.order_id = 1
+)
+WHERE id IN (SELECT product_id FROM order_items WHERE order_id = 1);
+
+--Delete Data:
+--Delete order with id = 2
+DELETE FROM orders
+WHERE id = 2;
