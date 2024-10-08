@@ -2,7 +2,7 @@
 --QAP2 Problem 1: University Course Enrollment System
 --October 7, 2024
 
---Create Tables
+--Create Tables:
 CREATE TABLE students (
     id INT AUTO_INCREMENT PRIMARY KEY,
     first_name VARCHAR(50),
@@ -35,7 +35,7 @@ CREATE TABLE enrollments (
     FOREIGN KEY (course_id) REFERENCES courses(id)
 );
 
---Insert Data
+--Insert Data:
 --Insert students
 INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
 ('Brad', 'Ayers', 'bradley.ayer@keyin.com', '2024-01-02'),
@@ -66,7 +66,7 @@ INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES
 (4, 3, '2024-09-02'),
 (5, 1, '2024-09-02');
 
---Tasks
+--Tasks:
 --Query to get all students enrolled in a specific course
 SELECT CONCAT(students.first_name, ' ', students.last_name) AS full_name
 FROM students
