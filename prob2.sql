@@ -32,3 +32,40 @@ CREATE TABLE order_items (
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE,
     FOREIGN KEY (product_id) REFERENCES products(id)
 );
+
+--Insert Data
+--Insert products
+INSERT INTO products (product_name, price, stock_quantity) VALUES
+('Ghost Shrimp', 3.99, 100),
+('Neocaridina Shrimp', 7.99, 200),
+('Amano Shrimp', 9.99, 300),
+('Bamboo Shrimp', 16.99, 50),
+('Caridina Shrimp', 8.99, 250);
+
+--Insert customers
+INSERT INTO customers (first_name, last_name, email) VALUES
+('Adam', 'Stevenson', 'adam.stevenson@keyin.com'),
+('Brandon', 'Shea', 'brandon.shea@keyin.com'),
+('Kyle', 'Hollett', 'kyle.hollett@keyin.com'),
+('Brian', 'Janes', 'brian.janes@keyin.com');
+
+--Insert orders
+INSERT INTO orders (customer_id, order_date) VALUES
+(1, '2024-10-01'),
+(2, '2024-10-01'),
+(3, '2024-10-02'),
+(4, '2024-10-02'),
+(1, '2024-10-03');
+
+--Insert order items
+INSERT INTO order_items (order_id, product_id, quantity) VALUES
+(1, 1, 1),
+(1, 3, 2),
+(2, 2, 1),
+(2, 4, 1),
+(3, 5, 3),
+(3, 1, 1),
+(4, 2, 2),
+(4, 5, 1),
+(5, 3, 1),
+(5, 4, 1);
