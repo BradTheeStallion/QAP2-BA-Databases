@@ -36,7 +36,7 @@ CREATE TABLE enrollments (
 );
 
 --Insert Data
--- Insert students
+--Insert students
 INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
 ('Brad', 'Ayers', 'bradley.ayer@keyin.com', '2024-01-02'),
 ('Adam', 'Stevenson', 'adam.stevenson@keyin.com', '2024-01-02'),
@@ -44,7 +44,7 @@ INSERT INTO students (first_name, last_name, email, enrollment_date) VALUES
 ('Kyle', 'Hollett', 'kyle.hollett@keyin.com', '2024-01-02'),
 ('Brian', 'Janes', 'brian.janes@keyin.com', '2024-01-02');
 
--- Insert professors
+--Insert professors
 INSERT INTO professors (first_name, last_name, department) VALUES
 ('Matthew', 'English', 'Full Stack Development'),
 ('Ainee', 'Q', 'Java'),
@@ -52,13 +52,13 @@ INSERT INTO professors (first_name, last_name, department) VALUES
 ('Mo', 'B', 'Python'),
 ('Noman', 'A', 'JS');
 
--- Insert courses
+--Insert courses
 INSERT INTO courses (course_name, course_description, professor_id) VALUES
 ('Databases', 'Introduction to Databases', 1),
 ('Advanced Java', 'Fundamentals of Java', 2),
 ('AWS', 'Introduction to AWS Development', 3);
 
--- Insert enrollments
+--Insert enrollments
 INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES
 (1, 1, '2024-09-02'),
 (2, 1, '2024-09-02'),
