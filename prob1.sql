@@ -66,6 +66,7 @@ INSERT INTO enrollments (student_id, course_id, enrollment_date) VALUES
 (4, 3, '2024-09-02'),
 (5, 1, '2024-09-02');
 
+--Tasks
 --Query to get all students enrolled in a specific course
 SELECT CONCAT(students.first_name, ' ', students.last_name) AS full_name
 FROM students
