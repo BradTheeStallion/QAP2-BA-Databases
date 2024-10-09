@@ -1,13 +1,14 @@
 --Brad Ayers
 --QAP2 Problem 2: Online Store Inventory and Orders System
---October 8, 2024
+--October 8 - 9, 2024
 
 --Create Tables:
 CREATE TABLE products (
     id SERIAL PRIMARY KEY,
     product_name VARCHAR(100),
     price DECIMAL(10, 2),
-    stock_quantity INT
+    stock_quantity INT,
+    CONSTRAINT check_stock_quantity CHECK (stock_quantity >= 0)
 );
 
 CREATE TABLE customers (
@@ -21,6 +22,7 @@ CREATE TABLE orders (
     id SERIAL PRIMARY KEY,
     customer_id INT,
     order_date DATE,
+    total_price DECIMAL(10, 2),
     FOREIGN KEY (customer_id) REFERENCES customers(id)
 );
 
@@ -50,12 +52,12 @@ INSERT INTO customers (first_name, last_name, email) VALUES
 ('Brian', 'Janes', 'brian.janes@keyin.com');
 
 --Insert orders
-INSERT INTO orders (customer_id, order_date) VALUES
-(1, '2024-10-01'),
-(2, '2024-10-01'),
-(3, '2024-10-02'),
-(4, '2024-10-02'),
-(1, '2024-10-03');
+INSERT INTO orders (customer_id, order_date, total_price) VALUES
+(1, '2024-10-01', 23.97),
+(2, '2024-10-01', 24.98),
+(3, '2024-10-02', 30.96),
+(4, '2024-10-02', 24.97),
+(1, '2024-10-03', 26.98);
 
 --Insert order items
 INSERT INTO order_items (order_id, product_id, quantity) VALUES
@@ -91,11 +93,11 @@ WHERE orders.customer_id = 1;
 --Update Data
 --Simulate stock reduction for order_id = 1
 UPDATE products
-SET stock_quantity = stock_quantity - (
+SET stock_quantity = GREATEST(0, stock_quantity - (
     SELECT quantity
     FROM order_items
     WHERE order_items.product_id = products.id AND order_items.order_id = 1
-)
+))
 WHERE id IN (SELECT product_id FROM order_items WHERE order_id = 1);
 
 --Delete Data:
